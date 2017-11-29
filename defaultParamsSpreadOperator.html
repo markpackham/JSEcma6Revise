@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //Default Parameter
+    //We can add a default value, handy if no one bothers writing stuff in greet();
+    function greet($greeting = 'Hello World') {
+        console.log($greeting)
+    }
+
+    greet();
+
+    //Spread Operator
+    let args1 = [1, 2, 3];
+    let args2 = [4, 5, 6];
+
+    function test() {
+        console.log(args1, args2);
+    }
+
+    //Below is the ECMA 5 method
+    //test.apply(null, args1);
+
+    //Spread operator is the ...
+    test(...args1, ...args2);
+</script>
+
+</body>
+</html>
