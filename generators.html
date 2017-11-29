@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Generators are functions that can be paused and resumed whenever you want multiple times
+
+    //The * infront turns this into a generator
+    function *g1() {
+        console.log('Hello');
+        yield 'Yield 1 Ran..';
+        console.log('World')
+        yield 'Yield 2 Ran..';
+        return 'Returned///'
+    }
+
+    //We need to put it in a variable to use it
+    let g = g1();
+    let g2 = g1();
+
+    console.log(g.next().value);
+    console.log(g.next().value);
+    //keep hitting next till you reach the end
+    console.log(g.next());
+
+    for(let val of g2){
+        console.log(val);
+    }
+
+</script>
+</body>
+</html>
