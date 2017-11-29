@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let myArray = [11, 22, 34, 65, 34];
+    let mySet = new Set(myArray);
+
+    //We are adding a string to numbers
+    mySet.add('100');
+
+    //We can add objects to sets
+    mySet.add({a: 1, b: 2});
+
+    mySet.delete(22);
+
+    console.log(mySet);
+
+    console.log(mySet.size);
+
+    mySet.forEach(function (val) {
+        console.log(val);
+    })
+
+    //Wipes it all out
+    mySet.clear();
+
+
+    //Maps are key value pairs whilst sets are individual values
+    let myMap = new Map([['a1', 'Hello'], ['b2', 'Goodbye']]);
+
+    myMap.set('c3', 'Yo');
+    myMap.delete('a1');
+    console.log(myMap);
+    console.log(myMap.size);
+
+    //Weak Set and Weak Map are to do with objects
+    let carWeakSet = new WeakSet();
+
+    let car1 = {
+        make: 'Honda',
+        model: 'Civic'
+    }
+
+    let car2 = {
+        make: 'Ford',
+        model: 'Focus'
+    }
+
+    let car3 = {
+        make: 'Vauxaul',
+        model: 'Rover'
+    }
+
+    carWeakSet.add(car1);
+    carWeakSet.add(car2);
+    carWeakSet.delete(car1);
+    console.log(carWeakSet);
+
+    let carWeakMap = new WeakMap();
+
+    let key1 = {
+        id: 1
+    }
+
+    let key2 = {
+        id: 2
+    }
+
+    carWeakMap.set(key1, car1);
+    carWeakMap.set(key2, car3);
+    carWeakMap.delete(key2);
+
+
+    console.log(carWeakMap)
+</script>
+</body>
+</html>

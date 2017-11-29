@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //We can bind "this" lexically
+
+
+    //This is an old workaround we had to put up with turning this into that
+    function Prefixer(prefix) {
+        this.prefix = prefix;
+    }
+
+    Prefixer.prototype.prefixArray = function (arr) {
+        let that = this;
+        return arr.map(function (x) {
+           console.log(that.prefix + x);
+        });
+    }
+
+    let pre = new Prefixer('Hello ');
+    pre.prefixArray(['Tom','John']);
+
+
+    //New Cool Arrow Method
+    function Prefixer2(prefix) {
+        this.prefix = prefix;
+    }
+
+    Prefixer2.prototype.prefixArray = function (arr) {
+        return arr.map((x) => {
+            console.log(this.prefix + x);
+        });
+    }
+
+    let pre2 = new Prefixer2('Hello ');
+    pre2.prefixArray(['Tom2','John2']);
+
+
+    let add = function (a,b) {
+        let sum = a+b;
+        console.log(sum);
+        return false;
+    }
+
+    add(2,2);
+
+    //If you hate the word function you can just use the arrow symbol
+    let add2 = (a,b) => {
+        let sum = a+b;
+        console.log(sum);
+        return false;
+    }
+
+    add2(2,2);
+</script>
+</body>
+</html>
