@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="template"></div>
+<div id="templateConcat"></div>
+
+
+<script>
+    
+    function makeUppercase(word) {
+        return word.toUpperCase();
+    }
+
+    let name = 'Timmy';
+
+    //The JavaScript must be below the content in order to grab the id of "template"
+    //notice that we can't use variables with conncatonation
+    let template = '<h2>Hello ${name} </h2>' + name + '<p> This is a simple template in JavaScript</p>';
+
+    //we can use ` ` instead of having to use ' + '
+    //also we can put variables in ${name}
+    //we can even use funcitons
+    let templateConcat = `<h2>Hello Again ${name}</h2>
+<p>This is a simple template in JavaScript using back ticks</p>
+<p>${makeUppercase('uppercase_Me')}</p>
+`;
+
+
+    document.getElementById('template').innerHTML = template;
+    document.getElementById('templateConcat').innerHTML = templateConcat;
+</script>
+
+</body>
+</html>

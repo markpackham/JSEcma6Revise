@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //This is all just like Java and C#
+
+    class User {
+        constructor(username, email, password) {
+            this.username = username;
+            this.email = email;
+            this.password = password;
+        }
+
+        //You don't need to create an object to use a static method
+        static countUsers() {
+            console.log('There are 50 users');
+        }
+
+        register() {
+            console.log(this.username + ' is now registered');
+        }
+    }
+
+    let Bob = new User('Bob', 'bob@hotmail.com', 'password123');
+
+    Bob.register();
+
+    User.countUsers();
+
+    class Member extends User {
+        constructor(username, email, password, memberPackage) {
+            //use super method to save to from having to write "this. =" for the superclass' parameters
+            super(username, email, password);
+            //we need to assign the sub class' unique parameter
+            this.package = memberPackage;
+        }
+
+        getPackage() {
+            console.log(this.username + ' is subscribbed to the ' + this.package);
+        }
+    }
+
+    let Mark = new Member('Mark','mark@hotmail.com','idkfa','Package 4500X');
+    Mark.getPackage();
+    Mark.register();
+
+</script>
+
+</body>
+</html>
