@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function testVar() {
+        var a = 30;
+        if (true) {
+            var a = 50;
+            console.log("var is " + a);
+        }
+        //becomes 50 since var is global
+        console.log("var is " + a);
+    }
+
+    testVar();
+
+    function testLet() {
+        let a = 30;
+        if (true) {
+            let a = 50;
+            console.log("let is " + a);
+        }
+        //becomes 30 and not 50 since let is block scoped
+        console.log("let is " + a);
+    }
+
+    testLet();
+
+
+    for (var i = 0; i < 10; i++) {
+        console.log(i);
+    }
+    console.log(i);
+
+    for (let j = 0; j < 10; j++) {
+        console.log(j);
+    }
+    //Below can't be run, it says "j" is not defined since we are using let
+    console.log(j);
+
+    //You can't change a constant's value but you can add to it's array.
+    const colors = [];
+
+    colors.push('red');
+    colors.push('blue');
+
+    //You can't do this
+    //colors = 'Green';
+
+    console.log(colors);
+
+</script>
+
+</body>
+</html>
