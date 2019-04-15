@@ -533,3 +533,156 @@ It returns -1 if none of the elements in the array satisfies the condition.
 .reduce() iterates through an array and takes the values of the elements and returns a single value.
 All iterator methods takes a callback function that can be pre-defined, or a function expression, or an arrow function.
 */
+
+//Object Literals use curly braces, {}, to designate an object literal:
+let fasterShip = {
+  color: "silver",
+  "Fuel Type": "Turbo Fuel"
+};
+
+//Access Properties
+let spaceship = {
+  homePlanet: "Earth",
+  color: "silver",
+  "Fuel Type": "Turbo Fuel",
+  numCrew: 5,
+  flightPath: ["Venus", "Mars", "Saturn"]
+};
+let crewCount = spaceship.numCrew;
+let planetArray = spaceship.flightPath;
+
+//Bracket Notation instead of the dot notation
+let spaceship = {
+  "Fuel Type": "Turbo Fuel",
+  "Active Mission": true,
+  homePlanet: "Earth",
+  numCrew: 5
+};
+let propName = "Active Mission";
+let isActive = spaceship["Active Mission"];
+console.log(spaceship[propName]);
+//true --- the value of the 'Active Mission' property
+
+//Property Reassignment
+let spaceship = {
+  "Fuel Type": "Turbo Fuel",
+  homePlanet: "Earth",
+  color: "silver",
+  "Secret Mission": "Discover life outside of Earth."
+};
+//change color
+spaceship.color = "glorious gold";
+//add a numEngines property with a numeric value
+spaceship.numEngines = 9;
+//delete operator to remove the 'Secret Mission'
+delete spaceship["Secret Mission"];
+
+//Nested Objects
+let spaceship = {
+  passengers: [{ name: "Space Dog" }],
+  telescope: {
+    yearBuilt: 2018,
+    model: "91031-XLT",
+    focalLength: 2032
+  },
+  crew: {
+    captain: {
+      name: "Sandra",
+      degree: "Computer Engineering",
+      encourageTeam() {
+        console.log("We got this!");
+      },
+      "favorite foods": ["cookies", "cakes", "candy", "spinach"]
+    }
+  },
+  engine: {
+    model: "Nimbus2000"
+  },
+  nanoelectronics: {
+    computer: {
+      terabytes: 100,
+      monitors: "HD"
+    },
+    backup: {
+      battery: "Lithium",
+      terabytes: 50
+    }
+  }
+};
+let capFave = spaceship.crew.captain["favorite foods"][0];
+let firstPassenger = spaceship.passengers[0];
+
+//Pass by Reference
+//functions which change object properties actually mutate the object permanently (even when the object is assigned to a const variable
+let spaceship = {
+  "Fuel Type": "Turbo Fuel",
+  homePlanet: "Earth"
+};
+let greenEnergy = obj => {
+  obj["Fuel Type"] = "avocado oil";
+};
+let remotelyDisable = obj => {
+  obj.disabled = true;
+};
+greenEnergy(spaceship);
+remotelyDisable(spaceship);
+console.log(spaceship);
+/* gives
+{ 'Fuel Type': 'avocado oil',
+  homePlanet: 'Earth',
+  disabled: true }
+  */
+
+//Object Looping using For In
+let spaceship = {
+  crew: {
+    captain: {
+      name: "Lily",
+      degree: "Computer Engineering",
+      cheerTeam() {
+        console.log("You got this!");
+      }
+    },
+    "chief officer": {
+      name: "Dan",
+      degree: "Aerospace Engineering",
+      agree() {
+        console.log("I agree, captain!");
+      }
+    },
+    medic: {
+      name: "Clementine",
+      degree: "Physics",
+      announce() {
+        console.log(`Jets on!`);
+      }
+    },
+    translator: {
+      name: "Shauna",
+      degree: "Conservation Science",
+      powerFuel() {
+        console.log("The tank is full!");
+      }
+    }
+  }
+};
+for (let crewMember in spaceship.crew) {
+  console.log(`${crewMember}: ${spaceship.crew[crewMember].name}`);
+}
+for (let crewMember in spaceship.crew) {
+  console.log(
+    `${spaceship.crew[crewMember].name}: ${spaceship.crew[crewMember].degree}`
+  );
+}
+
+/*
+Objects store collections of key-value pairs.
+Each key-value pair is a property—when a property is a function it is known as a method.
+An object literal is composed of comma-separated key-value pairs surrounded by curly braces.
+You can access, add or edit a property within an object by using dot notation or bracket notation.
+We can add methods to our object literals using key-value syntax with anonymous function expressions as values or by using the new ES6 method syntax.
+We can navigate complex, nested objects by chaining operators.
+Objects are mutable—we can change their properties even when they’re declared with const.
+Objects are passed by reference— when we make changes to an object passed into a function, those changes are permanent.
+We can iterate through objects using the For...in syntax.
+*/
