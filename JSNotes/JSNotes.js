@@ -686,3 +686,364 @@ Objects are mutable—we can change their properties even when they’re declare
 Objects are passed by reference— when we make changes to an object passed into a function, those changes are permanent.
 We can iterate through objects using the For...in syntax.
 */
+
+//.this
+//this keyword references the calling object which provides access to the calling object’s properties.
+const robot = {
+  model: "1E78V2",
+  energyLevel: 100,
+  provideInfo() {
+    return `I am ${this.model} and my current energy level is ${
+      this.energyLevel
+    }.`;
+  }
+};
+console.log(robot.provideInfo());
+//I am 1E78V2 and my current energy level is 100.
+
+//Arrow function's effect on "this"
+//Arrow functions inherently bind, or tie, an already defined "this" value to the function itself that is NOT the calling object.
+const goat = {
+  dietType: "herbivore",
+  makeSound() {
+    console.log("baaa");
+  },
+  diet: () => {
+    console.log(this.dietType);
+  }
+};
+//the value of "this" is the global object, or an object that exists in the global scope
+//which doesn’t have a dietType property and therefore returns undefined
+goat.diet(); // Prints undefined rather than "baaa"
+
+//"Private" keyword doesn't exist in JavaScript
+//JavaScript developers follow naming conventions that signal to other developers how to interact with a property.
+//One common convention is to place an underscore _ before the name of a property to mean that the property should not be altered
+const robot = {
+  _energyLevel: 100,
+  recharge() {
+    this._energyLevel += 30;
+    console.log(`Recharged! Energy is currently at ${this._energyLevel}%.`);
+  }
+};
+robot._energyLevel = "high ";
+robot.recharge();
+//Recharged! Energy is currently at high 30%.
+
+//Getter
+const robot = {
+  _model: "1E78V2",
+  _energyLevel: 100,
+  get energyLevel() {
+    if (typeof this._energyLevel === "number") {
+      return "My current energy level is " + this._energyLevel;
+    } else {
+      return "System malfunction: cannot retrieve energy level";
+    }
+  }
+};
+console.log(robot.energyLevel);
+//My current energy level is 100
+
+//Setter
+const robot = {
+  _model: "1E78V2",
+  _energyLevel: 100,
+  _numOfSensors: 15,
+  get numOfSensors() {
+    if (typeof this._numOfSensors === "number") {
+      return this._numOfSensors;
+    } else {
+      return "Sensors are currently down.";
+    }
+  },
+  set numOfSensors(num) {
+    if (typeof num === "number" && num >= 0) {
+      this._numOfSensors = num;
+    } else {
+      console.log("Pass in a number that is greater than or equal to 0");
+    }
+  }
+};
+robot.numOfSensors = 100;
+console.log(robot.numOfSensors);
+//1
+
+//Factory Functions
+//A factory function is a function that returns an object and can be reused to make multiple object instances.
+const robotFactory = (model, mobile) => {
+  return {
+    model: model,
+    mobile: mobile,
+    beep() {
+      console.log("Beep Boop");
+    }
+  };
+};
+const tinCan = robotFactory("P-500", true);
+tinCan.beep();
+//Beep Boop
+
+//Property Value Shorthand for ES6
+//new shortcuts for assigning properties to variables known as destructuring
+//if key & value are identical eg "model: model" just do "model"
+function robotFactory(model, mobile) {
+  return {
+    model,
+    mobile,
+    beep() {
+      console.log("Beep Boop");
+    }
+  };
+}
+
+//Destructured Assignment
+//extract key-value pairs from objects and save them as properties
+const robot = {
+  model: "1E78V2",
+  energyLevel: 100,
+  functionality: {
+    beep() {
+      console.log("Beep Boop");
+    },
+    fireLaser() {
+      console.log("Pew Pew");
+    }
+  }
+};
+//we create a variable with the name of an object’s key that is wrapped in curly braces { } and assign to it the object
+//functionality is referencing robot.functionality we can call the methods available to robot.functionality simply through functionality
+const { functionality } = robot;
+functionality.beep();
+//Beep Boop
+
+//Built In Object Methods Object.assign(), Object.entries(), and Object.keys()
+const robot = {
+  model: "SAL-1000",
+  mobile: true,
+  sentient: false,
+  armor: "Steel-plated",
+  energyLevel: 75
+};
+//Object.entries() will also return an array, but the array will contain more arrays that have both the key and value of the properties in an object.
+const robotKeys = Object.keys(robot);
+console.log(robotKeys);
+//[ 'model', 'mobile', 'sentient', 'armor', 'energyLevel' ]
+const robotEntries = Object.entries(robot);
+console.log(robotEntries);
+/*[ [ 'model', 'SAL-1000' ],
+[ 'mobile', true ],
+[ 'sentient', false ],
+[ 'armor', 'Steel-plated' ],
+[ 'energyLevel', 75 ] ]
+*/
+//Object.assign gives another object that has the properties of robot but with a few additional properties.
+const newRobot = Object.assign(
+  { laserBlaster: true, voiceRecognition: true },
+  robot
+);
+console.log(newRobot);
+/*
+{ laserBlaster: true,
+  voiceRecognition: true,
+  model: 'SAL-1000',
+  mobile: true,
+  sentient: false,
+  armor: 'Steel-plated',
+  energyLevel: 75 }
+  */
+
+/*
+  The object that a method belongs to is called the calling object.
+The this keyword refers the calling object and can be used to access properties of the calling object.
+Methods do not automatically have access to other internal properties of the calling object.
+The value of this depends on where the this is being accessed from.
+We cannot use arrow functions as methods if we want to access other internal properties.
+JavaScript objects do not have built-in privacy, rather there are conventions to follow to notify other developers about the intent of the code.
+The usage of an underscore before a property name means that the original developer did not intend for that property to be directly changed.
+Setters and getter methods allow for more detailed ways of accessing and assigning properties.
+Factory functions allow us to create object instances quickly and repeatedly.
+There are different ways to use object destructuring: one way is the property value shorthand and another is destructured assignment.
+*/
+
+//Class
+class Dog {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  get name() {
+    return this._name;
+  }
+  get behavior() {
+    return this._behavior;
+  }
+
+  incrementBehavior() {
+    this._behavior++;
+  }
+}
+const halley = new Dog("Halley");
+console.log(halley.name); // Print name value to console
+console.log(halley.behavior); // Print behavior value to console
+halley.incrementBehavior(); // Add one to behavior
+console.log(halley.name); // Print name value to console
+console.log(halley.behavior); // Print behavior value to console
+
+//Constructor
+class Surgeon {
+  constructor(name, department) {
+    this._name = name;
+    this._department = department;
+  }
+}
+
+//Instance of a class (or creating an object)
+class Surgeon {
+  constructor(name, department) {
+    this.name = name;
+    this.department = department;
+  }
+}
+const surgeonCurry = new Surgeon("Curry", "Cardiovascular");
+const surgeonDurant = new Surgeon("Durant", "Orthopedics");
+
+//Class Methods called
+class Surgeon {
+  constructor(name, department) {
+    this._name = name;
+    this._department = department;
+    this._remainingVacationDays = 20;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get department() {
+    return this._department;
+  }
+
+  get remainingVacationDays() {
+    return this._remainingVacationDays;
+  }
+
+  takeVacationDays(daysOff) {
+    this._remainingVacationDays -= daysOff;
+  }
+}
+const surgeonCurry = new Surgeon("Curry", "Cardiovascular");
+const surgeonDurant = new Surgeon("Durant", "Orthopedics");
+console.log(surgeonCurry.name);
+surgeonCurry.takeVacationDays(3);
+console.log(surgeonCurry.remainingVacationDays);
+
+//super (Grab stuff from "super class" so sub class can use it)
+//To avoid reference errors, it is best practice to call super on the first line of subclass constructors.
+//super keyword calls the constructor of the parent class
+class HospitalEmployee {
+  constructor(name) {
+    this._name = name;
+    this._remainingVacationDays = 20;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get remainingVacationDays() {
+    return this._remainingVacationDays;
+  }
+
+  takeVacationDays(daysOff) {
+    this._remainingVacationDays -= daysOff;
+  }
+}
+class Nurse extends HospitalEmployee {
+  constructor(name, certifications) {
+    super(name);
+    this._certifications = certifications;
+  }
+}
+const nurseOlynyk = new Nurse("Olynyk", ["Trauma", "Pediatrics"]);
+
+//Extends Inheritance
+class HospitalEmployee {
+  constructor(name) {
+    this._name = name;
+    this._remainingVacationDays = 20;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get remainingVacationDays() {
+    return this._remainingVacationDays;
+  }
+
+  takeVacationDays(daysOff) {
+    this._remainingVacationDays -= daysOff;
+  }
+}
+
+class Nurse extends HospitalEmployee {
+  constructor(name, certifications) {
+    super(name);
+    this._certifications = certifications;
+  }
+}
+const nurseOlynyk = new Nurse("Olynyk", ["Trauma", "Pediatrics"]);
+
+//Static Methods (where you don't have to bother creating an object) thanks to "static"
+class HospitalEmployee {
+  constructor(name) {
+    this._name = name;
+    this._remainingVacationDays = 20;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get remainingVacationDays() {
+    return this._remainingVacationDays;
+  }
+
+  takeVacationDays(daysOff) {
+    this._remainingVacationDays -= daysOff;
+  }
+
+  static generatePassword() {
+    return Math.floor(Math.random() * 10000);
+  }
+}
+class Nurse extends HospitalEmployee {
+  constructor(name, certifications) {
+    super(name);
+    this._certifications = certifications;
+  }
+
+  get certifications() {
+    return this._certifications;
+  }
+
+  addCertification(newCertification) {
+    this.certifications.push(newCertification);
+  }
+}
+const nurseOlynyk = new Nurse("Olynyk", ["Trauma", "Pediatrics"]);
+nurseOlynyk.takeVacationDays(5);
+console.log(nurseOlynyk.remainingVacationDays);
+nurseOlynyk.addCertification("Genetics");
+console.log(nurseOlynyk.certifications);
+
+/*
+Classes are templates for objects.
+Javascript calls a constructor method when we create a new instance of a class.
+Inheritance is when we create a parent class with properties and methods that we can extend to child classes.
+We use the extends keyword to create a subclass.
+The super keyword calls the constructor() of a parent class.
+Static methods are called on the class, but not on instances of the class.
+*/
