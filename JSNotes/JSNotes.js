@@ -1047,3 +1047,40 @@ We use the extends keyword to create a subclass.
 The super keyword calls the constructor() of a parent class.
 Static methods are called on the class, but not on instances of the class.
 */
+
+/*
+ES5 — The old JavaScript version that is supported by all modern web browsers.
+ES6 — The new(er) JavaScript version that is not supported by all modern web browsers. 
+The syntax is more readable, similar to other programming languages, and addresses the source of common bugs in ES5.
+caniuse.com — a website you can use to look up HTML, CSS, and JavaScript browser compatibility information.
+Babel — A JavaScript package that transpiles JavaScript ES6+ code to ES5.
+npm init — A terminal command that creates a package.json file.
+package.json — A file that contains information about a JavaScript project.
+npm install — A command that installs Node packages.
+babel-cli — A Node package that contains command line tools for Babel.
+babel-preset-env — A Node package that contains ES6+ to ES5 syntax mapping information.
+.babelrc — A file that specifies the version of the JavaScript source code.
+"build" script — A package.json script that you use to tranpsile ES6+ code to ES5.
+npm run build — A command that runs the build script and transpiles ES6+ code to ES5.
+*/
+
+//Module Exporting via module.exports
+let Airplane = {};
+Airplane.myAirplane = "StarJet";
+module.exports = Airplane;
+
+//module.exports can also hold properties
+const Airplane = {};
+module.exports = {
+  myAirplane: "CloudJet",
+  displayAirplane: function() {
+    return this.myAirplane;
+  }
+};
+
+//require module & call its property
+const Airplane = require("./1-airplane.js");
+function displayAirplane() {
+  console.log(Airplane.myAirplane);
+}
+displayAirplane();
