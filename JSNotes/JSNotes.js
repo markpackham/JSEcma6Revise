@@ -1084,3 +1084,262 @@ function displayAirplane() {
   console.log(Airplane.myAirplane);
 }
 displayAirplane();
+
+//export default (ES6)
+//When using ES6 syntax, we use export default in place of module.exports
+let Airplane = {};
+Airplane.availableAirplanes = [
+  {
+    name: "AeroJet",
+    fuelCapacity: 800
+  },
+  { name: "SkyJet", fuelCapacity: 500 }
+];
+export default Airplane;
+
+//import (ES6)
+//import keyword for importing objects is used in ES6
+import Airplane from "./airplane";
+function displayFuelCapacity() {
+  Airplane.availableAirplanes.forEach(function(element) {
+    console.log(
+      "Fuel Capacity of " + element.name + ": " + element.fuelCapacity
+    );
+  });
+}
+displayFuelCapacity();
+
+//Named Exports (ES6)
+//named exports allow us to export data through the use of variables
+let availableAirplanes = [
+  {
+    name: "AeroJet",
+    fuelCapacity: 800,
+    availableStaff: [
+      "pilots",
+      "flightAttendants",
+      "engineers",
+      "medicalAssistance",
+      "sensorOperators"
+    ]
+  },
+  {
+    name: "SkyJet",
+    fuelCapacity: 500,
+    availableStaff: ["pilots", "flightAttendants"]
+  }
+];
+
+let flightRequirements = {
+  requiredStaff: 4
+};
+
+function meetsStaffRequirements(availableStaff, requiredStaff) {
+  if (availableStaff.length >= requiredStaff) {
+    return true;
+  } else {
+    return false;
+  }
+}
+export { availableAirplanes, flightRequirements, meetsStaffRequirements };
+
+//Named Imports
+//To import objects stored in a variable, we use the import keyword and include the variables in a set of {}
+import {
+  availableAirplanes,
+  flightRequirements,
+  meetsStaffRequirements
+} from "./airplane";
+function displayFuelCapacity() {
+  availableAirplanes.forEach(function(element) {
+    console.log(
+      "Fuel Capacity of " + element.name + ": " + element.fuelCapacity
+    );
+  });
+}
+displayFuelCapacity();
+function displayStaffStatus() {
+  availableAirplanes.forEach(function(element) {
+    console.log(
+      element.name +
+        " meets staff requirements: " +
+        meetsStaffRequirements(
+          element.availableStaff,
+          flightRequirements.requiredStaff
+        )
+    );
+  });
+}
+displayStaffStatus();
+
+
+//Export Named Exports
+//Named exports are also distinct in that they can be exported as soon as they are declared,
+// by placing the keyword export in front of variable declarations
+export let availableAirplanes = [
+  {name: 'AeroJet',
+   fuelCapacity: 800,
+   availableStaff: ['pilots', 'flightAttendants', 'engineers', 'medicalAssistance', 'sensorOperators'],
+   maxSpeed: 1200,
+   minSpeed: 300
+  }, 
+  {name: 'SkyJet',
+   fuelCapacity: 500,
+   availableStaff: ['pilots', 'flightAttendants'],
+   maxSpeed: 800,
+   minSpeed: 200
+  }
+  ];  
+  export let flightRequirements = {
+    requiredStaff: 4,
+    requiredSpeedRange: 700
+  };
+  export function meetsStaffRequirements(availableStaff, requiredStaff) {
+    if (availableStaff.length >= requiredStaff) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  export function meetsSpeedRangeRequirements(maxSpeed, minSpeed, requiredSpeedRange) {
+    let range = maxSpeed - minSpeed;
+    if (range > requiredSpeedRange) {
+      return true;
+      } else {
+      return false;
+    }
+  };
+  
+
+  //Import Named Imports
+  //import { specialty, isVegetarian } from 'menu';
+import {availableAirplanes, flightRequirements, meetsStaffRequirements, meetsSpeedRangeRequirements} from './airplane';
+function displayFuelCapacity() {
+  availableAirplanes.forEach(function(element) {
+    console.log('Fuel Capacity of ' + element.name + ': ' + element.fuelCapacity);
+  });
+}
+displayFuelCapacity();
+function displayStaffStatus() {
+  availableAirplanes.forEach(function(element) {
+   console.log(element.name + ' meets staff requirements: ' + meetsStaffRequirements(element.availableStaff, flightRequirements.requiredStaff) );
+  });
+}
+displayStaffStatus();
+function displaySpeedRangeStatus() {
+  availableAirplanes.forEach(function(element) {
+   console.log(element.name + ' meets speed range requirements:' + meetsSpeedRangeRequirements(element.maxSpeed, element.minSpeed, flightRequirements.requiredSpeedRange));
+  });
+}
+displaySpeedRangeStatus();
+
+
+
+//Export as
+//This lets us change the name of variables eg  export { availableAirplanes as aircrafts};
+let availableAirplanes = [
+  {name: 'AeroJet',
+   fuelCapacity: 800,
+   availableStaff: ['pilots', 'flightAttendants', 'engineers', 'medicalAssistance', 'sensorOperators'],
+   maxSpeed: 1200,
+   minSpeed: 300
+  }, 
+  {name: 'SkyJet',
+   fuelCapacity: 500,
+   availableStaff: ['pilots', 'flightAttendants'],
+   maxSpeed: 800,
+   minSpeed: 200
+  }
+  ];
+  let flightRequirements = {
+    requiredStaff: 4,
+    requiredSpeedRange: 700
+  };
+  function meetsStaffRequirements(availableStaff, requiredStaff) {
+    if (availableStaff.length >= requiredStaff) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  function meetsSpeedRangeRequirements(maxSpeed, minSpeed, requiredSpeedRange) {
+    let range = maxSpeed - minSpeed;
+    if (range > requiredSpeedRange) {
+      return true;
+      } else {
+      return false;
+    }
+  };
+  export { availableAirplanes as aircrafts, flightRequirements as flightReqs, meetsStaffRequirements as meetsStaffReqs, meetsSpeedRangeRequirements as meetsSpeedRangeReqs };
+
+
+//Export Statements Combined
+export let availableAirplanes = [
+  {name: 'AeroJet',
+   fuelCapacity: 800,
+   availableStaff: ['pilots', 'flightAttendants', 'engineers', 'medicalAssistance', 'sensorOperators'],
+   maxSpeed: 1200,
+   minSpeed: 300
+  }, 
+  {name: 'SkyJet',
+   fuelCapacity: 500,
+   availableStaff: ['pilots', 'flightAttendants'],
+   maxSpeed: 800,
+   minSpeed: 200
+  }
+  ];
+  export let flightRequirements = {
+    requiredStaff: 4,
+    requiredSpeedRange: 700
+  };
+  export function meetsStaffRequirements(availableStaff, requiredStaff) {
+    if (availableStaff.length >= requiredStaff) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  export function meetsSpeedRangeRequirements(maxSpeed, minSpeed, requiredSpeedRange) {
+    let range = maxSpeed - minSpeed;
+    if (range > requiredSpeedRange) {
+      return true;
+      } else {
+      return false;
+    }
+  };
+  export default meetsSpeedRangeRequirements;
+
+//Import statements combined example
+import { availableAirplanes, flightRequirements, meetsStaffRequirements} from './airplane';
+import meetsSpeedRangeRequirements from './airplane';
+function displayFuelCapacity() {
+  availableAirplanes.forEach(function(element) {
+    console.log('Fuel Capacity of ' + element.name + ': ' + element['fuelCapacity']);
+  });
+}
+displayFuelCapacity();
+function displayStaffStatus() {
+  availableAirplanes.forEach(function(element) {
+   console.log(element.name + ' meets staff requirements: ' + meetsStaffRequirements(element.availableStaff, flightRequirements.requiredStaff) );
+  });
+}
+displayStaffStatus();
+function displaySpeedRangeStatus() {
+  availableAirplanes.forEach(function(element) {
+   console.log(element.name + ' meets speed range requirements:' + meetsSpeedRangeRequirements(element.maxSpeed, element.minSpeed, flightRequirements.requiredSpeedRange));
+  });
+}
+displaySpeedRangeStatus();
+
+/*
+Modules in JavaScript are reusable pieces of code that can be exported from one program and imported for use in another program.
+
+module.exports exports the module for use in another program although we prefer to use default exports in ES6
+require() imports the module for use in the current program although we prefer to use "import" in ES6.
+ES6 introduced a more flexible, easier syntax to export modules:
+
+default exports use export default to export JavaScript objects, functions, and primitive data types.
+named exports use the export keyword to export data in variables.
+named exports can be aliased with the as keyword.
+import is a keyword that imports any object, function, or data type.
+*/
