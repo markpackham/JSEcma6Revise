@@ -1087,6 +1087,7 @@ displayAirplane();
 
 //export default (ES6)
 //When using ES6 syntax, we use export default in place of module.exports
+//You can only have 1 default export per file
 let Airplane = {};
 Airplane.availableAirplanes = [
   {
