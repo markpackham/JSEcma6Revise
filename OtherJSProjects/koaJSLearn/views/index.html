@@ -1,0 +1,9 @@
+<h1><%- title %></h1>
+<div class="ul-list-group">
+    <!-- loop through array const things = ['guns', 'more guns', 'cannons', 'even bigger guns', 'nukes'] -->
+    <% things.forEach(thing => {%>
+    <li class="list-group-item">
+        <%= thing %>
+    </li>
+    <% }); %>
+</div>

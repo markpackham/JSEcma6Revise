@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Test question
+
+    //Don't return stuff that ends with an r
+    //g modifier: global. All matches (don't return after first match)
+    //The g modifier is used to perform a global match (find all matches rather than stopping after the first match).
+
+    //check that it doesn't end with 'r'
+    var regNoR = new RegExp('(?!r).$');
+    //check that it doesn't contain 'j'
+    var regNoJ = new RegExp('^[^j]*$');
+
+    var data = ['banana', 'joe', 'apple', 'car', 'mandarin', 'star'];
+
+    for (var i in data) {
+
+        if (regNoR.test(data[i]) && regNoJ.test(data[i])) {
+
+            console.log(data[i] + ' matches regex.');
+
+        }
+
+    }
+
+    /*
+    Unchanged the following gets outputted, so all fruits are shown while joe, car and star are ignored
+    Any word with an r at the end gets ignored
+    banana matches regex.
+    apple matches regex.
+    mandarin matches regex.
+    However if I add "coconut" to the front of the list banana is removed whilst "coconut" and "joe" are added
+    Also if I turn banana into "bananar" then "joe" gets added
+
+
+    If I put "joe" at the front it will be returned no matter what the expression is
+     */
+
+
+    /*
+    Using test() on a regex with the global flag
+
+If the regex has the global flag set, test() will advance the lastIndex of the regex. A subsequent use of test() will start the search at the substring of str specified by lastIndex (exec() will also advance the lastIndex property).
+     */
+
+</script>
+
+</body>
+</html>

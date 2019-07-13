@@ -1,0 +1,10 @@
+canvas {
+    margin: auto;
+    background: #ececec;
+    width: 100%;
+}
+
+/* Not a bootstrap class so we had to make it */
+.btn-disabled {
+    color: #fff !important;
+}

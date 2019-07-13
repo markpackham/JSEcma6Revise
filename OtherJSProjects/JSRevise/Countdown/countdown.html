@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Countdown</title>
+    <meta name="author" content="Mark Packham">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<header></header>
+Days: <span id="days">00</span><br>
+Hours: <span id="hours">00</span><br>
+Minutes: <span id="minutes">00</span><br>
+Seconds: <span id="seconds">00</span>
+<footer></footer>
+<script src="src/countdown.js">
+</script>
+<script>
+    //countdown('11/11/2019 07:20:15 PM');
+
+    var callbackfunction = function () {
+        console.log('Finished!');
+    }
+
+    //We are using the US date so it's MONTH first not DAY
+    countdown('02/12/2018 13:20:15', ['days', 'hours', 'minutes', 'seconds'],callbackfunction);
+</script>
+</body>
+</html>

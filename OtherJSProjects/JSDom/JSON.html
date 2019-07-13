@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="people">
+
+</ul>
+<script>
+    /*var person = {
+        name: "Brad",
+        age: 35,
+        address: {
+            street: "5 main st",
+            city: "Boston"
+        },
+        children: ["Brianna", "Nicholas"]
+    }
+
+    //Turn into JSON so keys become string {"name":"Brad","age":35}
+    person = JSON.stringify(person);
+    //Turn back into JavaScript object so can do person.name
+    person = JSON.parse(person);
+
+    var people = [
+        {
+            name: "Brad",
+            age: 35
+        }, {
+            name: "John",
+            age: 40
+        }, {
+            name: "Sara",
+            age: 25
+        }
+    ];
+
+    var output = '';
+    for (var i = 0; i < people.length; i++) {
+        //console.log(people[i].name);
+        output += '<li>' + people[i].name + '</li>';
+
+    }
+
+    document.getElementById('people').innerHTML = output;
+
+    /!*
+    console.log(person.address.street);
+    console.log(person.children[0]);
+    console.log(people[1].name)
+    *!/*/
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            //console.log(xhttp.responseText);
+            var reponse = JSON.parse(xhttp.responseText);
+            var people = reponse.people;
+
+            //console.log(reponse.people);
+            var output = '';
+            for (var i = 0; i < people.length; i++) {
+                //console.log(people[i].name);
+                output += '<li>' + people[i].name + '</li>';
+
+            }
+            document.getElementById('people').innerHTML = output;
+        }
+    };
+    xhttp.open("GET", "people.json", true);
+    xhttp.send();
+
+</script>
+</body>
+</html>

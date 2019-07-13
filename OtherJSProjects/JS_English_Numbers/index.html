@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        var reusableNumberNames = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+        var uniqueNumberNames = ["Ten", "Eleven", "Tweleve", "Thirteen", "Fourteen", "Fifthteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+        var starterNumberNames = [["Twenty", "Thirty", "Fourty", "Fifthy", "Sixty", "Seventy", "Eighty", "Ninety"],["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]];
+
+        for (var i = 0; i < reusableNumberNames.length; i++) {
+            document.writeln(reusableNumberNames[i] + ", ");
+        }
+
+        for (var i = 0; i < uniqueNumberNames.length; i++) {
+            document.writeln(uniqueNumberNames[i] + ", ");
+        }
+
+        document.writeln("<br>" + "Twenty, ");
+
+        for (var i2 = 0; i2 < reusableNumberNames.length; i2++) {
+            document.writeln("Twenty " + reusableNumberNames[i2] + ", ");
+        }
+
+        document.writeln("<br>" + "Thirty, ");
+
+        for (var i2 = 0; i2 < reusableNumberNames.length; i2++) {
+            document.writeln("Thirty " + reusableNumberNames[i2] + ", ");
+        }
+
+        document.writeln("<br>" + "Fourty, ");
+
+        for (var i2 = 0; i2 < reusableNumberNames.length; i2++) {
+            document.writeln("Fourty " + reusableNumberNames[i2] + ", ");
+        }
+
+        document.writeln("<br>" + "Fifty, ");
+
+        for (var i2 = 0; i2 < reusableNumberNames.length; i2++) {
+            document.writeln("Fifty " + reusableNumberNames[i2] + ", ");
+        }
+
+        document.writeln("<br>" + "Sixty, ");
+
+        for (var i2 = 0; i2 < reusableNumberNames.length; i2++) {
+            document.writeln("Sixty " + reusableNumberNames[i2] + ", ");
+        }
+
+        document.writeln("<br>" + "Seventy, ");
+
+        for (var i2 = 0; i2 < reusableNumberNames.length; i2++) {
+            document.writeln("Seventy " + reusableNumberNames[i2] + ", ");
+        }
+
+        document.writeln("<br>" + "Eighty, ");
+
+        for (var i2 = 0; i2 < reusableNumberNames.length; i2++) {
+            document.writeln("Eighty " + reusableNumberNames[i2] + ", ");
+        }
+
+        document.writeln("<br>" + "Ninety, ");
+
+        for (var i2 = 0; i2 < reusableNumberNames.length; i2++) {
+            document.writeln("Ninety " + reusableNumberNames[i2] + ", ");
+        }
+
+        document.writeln("<br>" + "Starter Nums, ");
+
+        for (var i3 = 0; i3 < starterNumberNames.length; i3++) {
+            document.writeln("Starter Nums " + starterNumberNames[[0][0]] + ", ");
+            for (var i4 = 0; i4 < starterNumberNames.length; i4++) {
+                document.writeln("Starter Nums " + starterNumberNames[[0][i4]] + ", ");
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
