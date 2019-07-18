@@ -45,6 +45,12 @@ deleteListButton.addEventListener("click", e => {
   saveAndRender();
 });
 
+clearCompleteTasksButton.addEventListener("click", e => {
+  const selectedList = lists.find(list => list.id === selectedListId);
+  selectedList.tasks = selectedList.tasks.filter(task => !task.complete);
+  saveAndRender();
+});
+
 newListForm.addEventListener("submit", e => {
   e.preventDefault();
   const listName = newListInput.value;
