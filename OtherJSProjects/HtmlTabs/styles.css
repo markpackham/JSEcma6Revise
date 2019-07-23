@@ -1,0 +1,42 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+[data-tab-content] {
+  display: none;
+}
+
+.active[data-tab-content] {
+  display: block;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid black;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.tab.active {
+  background-color: #ccc;
+}
+
+.tab:hover {
+  background-color: #aaa;
+}
+
+.tab-content {
+  margin-left: 20px;
+  margin-right: 20px;
+}
