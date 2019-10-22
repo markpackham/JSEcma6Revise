@@ -69,6 +69,23 @@ function generatePassword(lower, upper, number, symbol, length) {
   return finalPassword;
 }
 
+// Copy password to clipboard
+clipboard.addEventListener("click", () => {
+  const textarea = document.createElement("textarea");
+  const password = resultEl.innerText;
+
+  if (!password) {
+    return;
+  }
+
+  textarea.value = password;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+  alert("Password copied to clipboard");
+});
+
 // Generator functions
 function getRandomLower() {
   // The numbers we do our calculations on are based on Character Encoding for Html
