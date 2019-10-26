@@ -34,12 +34,31 @@ document.addEventListener("mousemove", e => {
   ) {
     setButtonPosition(
       buttonBox.x + (horizontalOffset / horizontalDistanceFrom) * 10,
-      buttonBox.y + (verticalOffset / verticallDistanceFrom) * 10
+      buttonBox.y + (verticalOffset / verticalDistanceFrom) * 10
     );
   }
 });
 
 function setButtonPosition(left, top) {
+  const windowBox = document.body.getBoundingClientRect();
+  const buttonBox = evilButton.getBoundingClientRect();
+
+  // have the button leap to the opposite side of the screen rather than jump off the screen entirely
+  if (distanceFromCenter(left, windowBox.left, buttonBox.width) < 0) {
+    left = windowBox.right - buttonBox.width - OFFSET;
+  }
+  if (distanceFromCenter(left, windowBox.right, buttonBox.width) > 0) {
+    left = windowBox.left + OFFSET;
+  }
+  // Move button to bottom of the page if we try to steer it to the very top
+  if (distanceFromCenter(top, windowBox.top, buttonBox.height) < 0) {
+    top = windowBox.bottom - buttonBox.height - OFFSET;
+  }
+  // Move button to top of the page if we push it too far to the bottom
+  if (distanceFromCenter(top, windowBox.bottom, buttonBox.height) > 0) {
+    top = windowBox.top + OFFSET;
+  }
+
   evilButton.style.left = `${left}px`;
   evilButton.style.top = `${top}px`;
   console.log(x, y);
