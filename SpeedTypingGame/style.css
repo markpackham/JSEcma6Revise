@@ -16,6 +16,12 @@ body,
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
+p {
+  padding-top: 2rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 0.8rem;
+}
+
 .container {
   background-color: #f0db4f;
   padding: 1rem;
