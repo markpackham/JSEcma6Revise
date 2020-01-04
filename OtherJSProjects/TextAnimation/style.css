@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 70vh;
+}
+
+span {
+  opacity: 0;
+  transition: all 1.4s ease;
+  transform: translateY(50px);
+  /* we need to make the span an inline-block so it can be moved */
+  display: inline-block;
+}
+
+span.fade {
+  opacity: 1;
+  transform: translateY(0px);
+  color: crimson;
+}
