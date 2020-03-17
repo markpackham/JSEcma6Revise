@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+}
+
+.learned-from {
+  text-align: center;
+}
+
+.container {
+  background-color: #333;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.draggable {
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid black;
+  cursor: move;
+}
+
+.draggable.dragging {
+  opacity: 0.5;
+}
+
+/* Background Styles Only */
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+* {
+  font-family: Raleway;
+}
