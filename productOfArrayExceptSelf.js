@@ -5,7 +5,7 @@
 
 // Division is the easiest solution
 const productOfArrayExceptSelf = (arr) => {
-  const sum = arr.reduce((total, amount) => total + amount);
+  const sum = arr.reduce((total, amount) => total * amount);
   const newArr = [];
 
   for (let i = 0; i < arr.length; i++) {
@@ -19,13 +19,31 @@ const productOfArrayExceptSelf = (arr) => {
 //
 //
 // Solution if Division forbidden
-// Think of things in left total & right total of array index position multiplied together
 // Since division is not used you don't need to bother with rounding
-const productOfArrayExceptSelf2 = (arr) => {};
+// Refer to this for detailed explination https://youtu.be/khTiTSZ5QZY?t=515
+const productOfArrayExceptSelf2 = (arr) => {
+  const position = arr.length;
+
+  let output = [position];
+  output[0] = 1;
+
+  // Calculate all values left of the current array position
+  for (let i = 1; i < position; i++) {
+    output[i] = arr[i - 1] * output[i - 1];
+  }
+
+  let rightSide = 1;
+  // Calculate all values right of the current array position and update total
+  for (let i = position - 1; i >= 0; i--) {
+    output[i] = output[i] * rightSide;
+    rightSide = rightSide * arr[i];
+  }
+
+  return output;
+};
 
 my_array = [1, 2, 3, 4, 5];
 
-// without round [ 15, 7.5, 5, 3.75, 3 ]
-// with round for rounding, [ 15, 8, 5, 4, 3 ]
+// Answer, [ 120, 60, 40, 30, 24 ]
 console.log(productOfArrayExceptSelf(my_array));
 console.log(productOfArrayExceptSelf2(my_array));
