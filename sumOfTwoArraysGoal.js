@@ -19,10 +19,29 @@ const sumOfTwoArraysGoal = (arr1, arr2, goal) => {
   return false;
 };
 
+//
+//
+//
+//
+// Slow solution with ugly nested For loops if Set is banned from use
+const sumOfTwoArraysGoal2 = (arr1, arr2, goal) => {
+  for (let i = 0; i < arr1.length; i++) {
+    let desired = goal - arr1[i];
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr2[j] === desired) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
 my_array = [1, 2, 3];
 my_array2 = [4, 5, 6];
 
 // true - You can reach the goal by adding the two last array values 3 + 6
 console.log(sumOfTwoArraysGoal(my_array, my_array2, 9));
+console.log(sumOfTwoArraysGoal2(my_array, my_array2, 9));
 // false - You cannot reach the goal none of the values in the arrays will help us
 console.log(sumOfTwoArraysGoal(my_array, my_array2, 1000000));
+console.log(sumOfTwoArraysGoal2(my_array, my_array2, 1000000));
