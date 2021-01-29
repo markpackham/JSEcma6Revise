@@ -3,8 +3,8 @@
 // with selection of the pivot being the key
 // RECURSION is used!!!!
 // This algorithm is fast but hard to understand
-function quickSort(arr) {
-  // edge case to avoid us wasting time on an array with only one value
+const quickSort = (arr) => {
+  // edge case to avoid us wasting time on an array with only one or 0 values
   if (arr.length <= 1) {
     return arr;
   }
@@ -14,18 +14,22 @@ function quickSort(arr) {
   const leftArr = [];
   const rightArr = [];
 
-  for (let i = 0; i < arr.length - 1; i++) {
-    // it's possible to empty left or right arrays depending on if our pivot is the biggest or smallest number
-    if (arr[i] < pivot) {
-      leftArr.push(arr[i]);
-    } else {
-      rightArr.push[arr[i]];
-    }
+  // add things to the left or right arrays based off the pivot
+  for (const i of arr.slice(0, arr.length - 1)) {
+    i < pivot ? leftArr.push(i) : rightArr.push(i);
   }
 
+  // recursion occurs here
   return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
-}
+};
 
-const my_array = [1, 2, 3, 4, 10, 9, 2, 2, 2, 8, 7];
+const my_array = [1, 2, 3, 4, 10, 9, 2, 2, 2, 8, 7, 7000, 3];
 
+/*
+[
+  1,  2,    2, 2, 2,
+  3,  3,    4, 7, 8,
+  9, 10, 7000
+]
+*/
 console.log(quickSort(my_array));
