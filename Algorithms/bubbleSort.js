@@ -38,5 +38,12 @@ const bubbleSort2 = (arr) => {
 };
 
 const my_array = [1, 2, 3, 10, 9, 8, -100, -200, -300];
+/*
+[
+  -300, -200, -100, 1,
+     2,    3,    8, 9,
+    10
+]
+*/
 console.log(bubbleSort(my_array));
 console.log(bubbleSort2(my_array));
